@@ -9,11 +9,11 @@ using TechTalk.SpecFlow;
 namespace Tests
 {
     [Binding]
-    public class Steps2
+    public class InstanceSteps
     {
         InstanceProvider provider;
         Core.ScenarioContext context;
-        public Steps2(InstanceProvider provider, Core.ScenarioContext context)
+        public InstanceSteps(InstanceProvider provider, Core.ScenarioContext context)
         {
             this.provider = provider;
             this.context = context;

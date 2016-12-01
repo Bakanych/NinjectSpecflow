@@ -26,7 +26,7 @@ namespace Tests
         }
 
         [AfterScenario]
-        public void ClearContext()
+        public void AfterScenario()
         {
             foreach (var key in context.Keys)
             {
@@ -42,9 +42,9 @@ namespace Tests
         }
 
         [AfterTestRun]
-        public static void Clean()
+        public static void AfterTestRun()
         {
-            var a = provider;
+            // final cleanup logic
         }
 
     }

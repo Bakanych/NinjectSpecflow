@@ -16,25 +16,20 @@ namespace Tests
     public class StepsBefore
     {
         readonly IObjectContainer objectContainer;
-        readonly ITraceListener tracer;
-        InstanceProvider provider;
-        Core.ScenarioContext context;
-        public StepsBefore(IObjectContainer objectContainer, ITraceListener tracer)
+
+        public StepsBefore(IObjectContainer objectContainer)
         {
             this.objectContainer = objectContainer;
-            this.tracer = tracer;
         }
         [BeforeScenario]
         public void Init()
         {
             var scenario = Kernel.Instance.Get<Scenario>();
-            this.provider = scenario.Provider;
-            this.context = scenario.Context;
             var instance = scenario.Provider.Get(0);
-            context.Keys.Add(instance.Id);
+            scenario.Context.Keys.Add(instance.Id);
 
-            objectContainer.RegisterInstanceAs(provider);
-            objectContainer.RegisterInstanceAs(context);
+            objectContainer.RegisterInstanceAs(scenario.Provider);
+            objectContainer.RegisterInstanceAs(scenario.Context);
         }
 
 
