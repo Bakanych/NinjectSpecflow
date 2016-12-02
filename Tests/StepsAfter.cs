@@ -32,7 +32,7 @@ namespace Tests
             foreach (var key in context.Keys)
             {
                 var instance = provider.Create(key);
-                Assert.AreEqual(context.Id, instance.Resolver.GetScenarioId());
+                Assert.AreEqual(context.Id.ToString(), instance.Resolver.GetScenarioId());
 
                 tracer.WriteToolOutput($"context of {instance.Id}:");
                 tracer.WriteToolOutput($"[scenarioId]={instance.Resolver.GetScenarioId()}");

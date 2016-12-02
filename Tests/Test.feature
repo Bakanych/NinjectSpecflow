@@ -16,7 +16,7 @@ Scenario: Should switch between instances
 		| a | 10 |
 		| b | 20 |
 
-Scenario: Resolver should access to instance context 
+Scenario: Resolver should access to instance context via functions
 	Given I add to context
 		| k | v  |
 		| a | 10 |

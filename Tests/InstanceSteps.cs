@@ -25,7 +25,7 @@ namespace Tests
             foreach (var row in table.Rows)
             {
                 var instance = provider.Create(context.Current);
-                instance.Context[row[0]] = int.Parse(row[1]);
+                instance.Context[row[0]] = row[1];
             }
         }
 

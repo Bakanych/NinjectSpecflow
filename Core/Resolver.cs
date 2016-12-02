@@ -1,4 +1,5 @@
 ﻿using Core;
+using Core.Functions;
 using Ninject;
 using Ninject.Syntax;
 using System;
@@ -19,14 +20,15 @@ namespace Core
             this.root = root;
         }
 
-        public int ReadContext(string key)
+        public string ReadContext(string key)
         {
-            return instanceContext[key];
+            var args = new List<object>() { key };
+            return root.Get<ContextValueFunction>().Evaluate(args);
         }
 
-        public int GetScenarioId()
+        public string GetScenarioId()
         {
-            return root.Get<ScenarioId>().Calculate();
+            return root.Get<ScenarioIdFunction>().Evaluate(null);
         }
     }
 }

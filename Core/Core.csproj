@@ -45,10 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ContextCollection.cs" />
+    <Compile Include="Functions\ContextValueFunction.cs" />
+    <Compile Include="Functions\IFunction.cs" />
     <Compile Include="Kernel.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="ScenarioContext.cs" />
-    <Compile Include="ScenarioId.cs" />
+    <Compile Include="Functions\ScenarioIdFunction.cs" />
     <Compile Include="Instance.cs" />
     <Compile Include="InstanceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

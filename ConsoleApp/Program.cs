@@ -7,6 +7,7 @@ using Ninject;
 using Bindings;
 using Core;
 using System.Threading;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ConsoleApp
 {
@@ -15,21 +16,25 @@ namespace ConsoleApp
     {
         static void Main(string[] args)
         {
-            int n = 3;
-            var container = new CoreModule();
-            var kernel = new StandardKernel(container);
-            Parallel.For(1, n + 1, (int i) =>
+            int testThreads = 3;
+            int instances = 2;
+            Parallel.For(1, testThreads + 1, (thread) =>
                {
-                   var scenario = kernel.Get<Scenario>();
-                   var instance = scenario.Provider.Create(i);
-                   scenario.Provider.Create(i);
-                   instance.Context[i.ToString()] = i;
-                   var scenarioId = instance.Resolver.GetScenarioId();
-                   var context = instance.Resolver.ReadContext(i.ToString());
+                   var scenario = Kernel.Instance.Get<Scenario>();
+                   Parallel.For(1, instances + 1, (int i) =>
+                   {
+                       var instance = scenario.Provider.Create(i);
 
-                   Console.WriteLine($"instance[{instance.Id}]: scenarioId={scenarioId}, context={context}");
-               }
-            );
+                       // cache test
+                       Assert.AreSame(instance, scenario.Provider.Create(i));
+
+                       instance.Context[i.ToString()] = i.ToString();
+                       var scenarioId = instance.Resolver.GetScenarioId();
+                       var context = instance.Resolver.ReadContext(i.ToString());
+
+                       Console.WriteLine($"instance[{instance.Id}]: scenarioId={scenarioId}, context={context}");
+                   });
+               });
             Console.ReadKey();
         }
     }

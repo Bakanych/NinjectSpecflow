@@ -127,11 +127,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Resolver should access to instance context")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Resolver should access to instance context via functions")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Multi-Instance Application")]
-        public virtual void ResolverShouldAccessToInstanceContext()
+        public virtual void ResolverShouldAccessToInstanceContextViaFunctions()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resolver should access to instance context", ((string[])(null)));
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resolver should access to instance context via functions", ((string[])(null)));
 #line 19
 this.ScenarioSetup(scenarioInfo);
 #line hidden

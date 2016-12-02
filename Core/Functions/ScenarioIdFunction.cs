@@ -6,18 +6,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core
+namespace Core.Functions
 {
-    public class ScenarioId
+    public class ScenarioIdFunction : IFunction
     {
         ScenarioContext context;
-        public ScenarioId(IResolutionRoot root, ScenarioContext context)
+        public ScenarioIdFunction(ScenarioContext context)
         {
             this.context = context;
         }
-        public int Calculate()
+        
+        public string Evaluate(IList<object> args)
         {
-            return context.Id;
+            return context.Id.ToString();
         }
     }
 }
