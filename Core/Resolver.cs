@@ -1,4 +1,5 @@
-﻿using Ninject;
+﻿using Core;
+using Ninject;
 using Ninject.Syntax;
 using System;
 using System.Collections.Generic;
@@ -10,20 +11,20 @@ namespace Core
 {
     public class Resolver
     {
-        EntityCollection instanceContext;
+        ContextCollection<int> instanceContext;
         IResolutionRoot root;
-        public Resolver(EntityCollection ic, IResolutionRoot root)
+        public Resolver(ContextCollection<int> ic, IResolutionRoot root)
         {
             this.instanceContext = ic;
             this.root = root;
         }
 
-        public int ReadContext(int key)
+        public int ReadContext(string key)
         {
             return instanceContext[key];
         }
 
-        public int ReadScenarioId()
+        public int GetScenarioId()
         {
             return root.Get<ScenarioId>().Calculate();
         }

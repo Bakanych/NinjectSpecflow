@@ -44,7 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityCollection.cs" />
+    <Compile Include="ContextCollection.cs" />
+    <Compile Include="Kernel.cs" />
     <Compile Include="Scenario.cs" />
     <Compile Include="ScenarioContext.cs" />
     <Compile Include="ScenarioId.cs" />

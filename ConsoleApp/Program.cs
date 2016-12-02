@@ -21,11 +21,11 @@ namespace ConsoleApp
             Parallel.For(1, n + 1, (int i) =>
                {
                    var scenario = kernel.Get<Scenario>();
-                   var instance = scenario.Provider.Get(i);
-                   scenario.Provider.Get(i);
-                   instance.Context[i] = i;
-                   var scenarioId = instance.Resolver.ReadScenarioId();
-                   var context = instance.Resolver.ReadContext(i);
+                   var instance = scenario.Provider.Create(i);
+                   scenario.Provider.Create(i);
+                   instance.Context[i.ToString()] = i;
+                   var scenarioId = instance.Resolver.GetScenarioId();
+                   var context = instance.Resolver.ReadContext(i.ToString());
 
                    Console.WriteLine($"instance[{instance.Id}]: scenarioId={scenarioId}, context={context}");
                }

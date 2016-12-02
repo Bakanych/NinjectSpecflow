@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Ninject;
+using Ninject.Syntax;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +11,7 @@ namespace Core
     public class ScenarioId
     {
         ScenarioContext context;
-        public ScenarioId(ScenarioContext context)
+        public ScenarioId(IResolutionRoot root, ScenarioContext context)
         {
             this.context = context;
         }

@@ -10,8 +10,8 @@ namespace Core
     {
         public int Id { get; private set; }
         public Resolver Resolver { get; private set; }
-        public EntityCollection Context { get; set; }
-        public Instance(Resolver resolver, EntityCollection context, int id)
+        public ContextCollection<int> Context { get; set; }
+        public Instance(Resolver resolver, ContextCollection<int> context, int id)
         {
             this.Id = id;
             this.Resolver = resolver;

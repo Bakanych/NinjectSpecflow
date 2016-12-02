@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bindings
+namespace Core
 {
     public class Kernel
     {
@@ -20,8 +20,8 @@ namespace Bindings
                 {
                     if (instance == null)
                     {
-                        var container = new CoreModule();
-                        instance = new StandardKernel(container);
+                        // Ninject.Extensions.Binding module will be loaded automatically
+                        instance = new StandardKernel();
                     }
                     return instance;
                 }

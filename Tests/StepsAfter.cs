@@ -1,6 +1,7 @@
 ﻿using Bindings;
 using BoDi;
 using Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Ninject;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Tests
     [Binding]
     public class StepsAfter
     {
-        static InstanceProvider provider;
+        InstanceProvider provider;
         Core.ScenarioContext context;
         ITraceListener tracer;
         public StepsAfter(InstanceProvider instanceProvider, Core.ScenarioContext context, ITraceListener tracer)
@@ -30,12 +31,15 @@ namespace Tests
         {
             foreach (var key in context.Keys)
             {
-                var instance = provider.Get(key);
+                var instance = provider.Create(key);
+                Assert.AreEqual(context.Id, instance.Resolver.GetScenarioId());
+
                 tracer.WriteToolOutput($"context of {instance.Id}:");
+                tracer.WriteToolOutput($"[scenarioId]={instance.Resolver.GetScenarioId()}");
 
                 foreach (var item in instance.Context.Collection)
                 {
-                    tracer.WriteToolOutput($"{item.Value}");
+                    tracer.WriteToolOutput($"[{item.Key}]={item.Value}");
 
                 }
             }

@@ -25,7 +25,7 @@ namespace Tests
         public void Init()
         {
             var scenario = Kernel.Instance.Get<Scenario>();
-            var instance = scenario.Provider.Get(0);
+            var instance = scenario.Provider.Create(0);
             scenario.Context.Keys.Add(instance.Id);
 
             objectContainer.RegisterInstanceAs(scenario.Provider);

@@ -1,4 +1,5 @@
 ﻿using Core;
+using Ninject.Extensions.Factory;
 using Ninject.Extensions.NamedScope;
 using Ninject.Modules;
 using System;
@@ -18,12 +19,15 @@ namespace Bindings
         Ninject.Extensions.Factory.IInstanceProvider instanceProvider;
         public override void Load()
         {
-            Bind<InstanceProvider>().ToSelf().InSingletonScope();
+            //Bind<InstanceProvider>().ToSelf().InSingletonScope();
 
             Bind<Scenario>().ToSelf().DefinesNamedScope("scenario");
             Bind<ScenarioContext>().ToSelf().InNamedScope("scenario");
+            Bind<InstanceProvider>().ToSelf().InNamedScope("scenario");
+
             Bind<Instance>().ToSelf().DefinesNamedScope("instance");
-            Bind<EntityCollection>().ToSelf().InNamedScope("instance");
+            Bind(typeof(ContextCollection<>)).ToSelf().InNamedScope("instance");
+            Bind<Resolver>().ToSelf().InNamedScope("instance");
         }
     }
 }

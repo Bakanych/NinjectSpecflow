@@ -19,10 +19,10 @@ namespace Tests
             this.context = context;
         }
 
-        [Given("I switch to (.+)")]
+        [Given(@"I switch to (\d+)")]
         public void SwitchInstance(int id)
         {
-            context.Keys.Add(provider.Get(id).Id);
+            context.Keys.Add(provider.Create(id).Id);
         }
     }
 }

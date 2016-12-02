@@ -20,8 +20,9 @@ namespace Core
         public int Id { get; private set; }
         public ScenarioContext()
         {
+            var rnd = new Random(this.GetHashCode() ^ Environment.TickCount ^ Thread.CurrentThread.ManagedThreadId);
+            Id = rnd.Next(1, 9999);
             Keys = new HashSet<int>();
-            Id = Thread.CurrentThread.ManagedThreadId;
         }
     }
 }

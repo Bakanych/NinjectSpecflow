@@ -18,7 +18,7 @@ namespace Tests
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "2.1.0.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class TestFeature
+    public partial class Multi_InstanceApplicationFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,7 +30,7 @@ namespace Tests
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner(null, 0);
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Test", null, ProgrammingLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Multi-Instance Application", null, ProgrammingLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -45,9 +45,9 @@ namespace Tests
         public virtual void TestInitialize()
         {
             if (((testRunner.FeatureContext != null) 
-                        && (testRunner.FeatureContext.FeatureInfo.Title != "Test")))
+                        && (testRunner.FeatureContext.FeatureInfo.Title != "Multi-Instance Application")))
             {
-                Tests.TestFeature.FeatureSetup(null);
+                Tests.Multi_InstanceApplicationFeature.FeatureSetup(null);
             }
         }
         
@@ -68,55 +68,96 @@ namespace Tests
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get Instances")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Test")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestCategoryAttribute("mytag")]
-        public virtual void GetInstances()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should initialize default instance")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Multi-Instance Application")]
+        public virtual void ShouldInitializeDefaultInstance()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get Instances", new string[] {
-                        "mytag"});
-#line 4
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should initialize default instance", ((string[])(null)));
+#line 3
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                         "k",
                         "v"});
             table1.AddRow(new string[] {
-                        "1",
-                        "100"});
-            table1.AddRow(new string[] {
-                        "2",
-                        "200"});
-#line 5
- testRunner.Given("I add to context", ((string)(null)), table1, "Given ");
-#line 9
- testRunner.Given("I switch to 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                        "k",
-                        "v"});
-            table2.AddRow(new string[] {
-                        "1",
+                        "a",
                         "10"});
-            table2.AddRow(new string[] {
-                        "2",
-                        "20"});
-#line 10
- testRunner.Given("I add to context", ((string)(null)), table2, "Given ");
+#line 4
+ testRunner.Given("I add to context", ((string)(null)), table1, "Given ");
 #line hidden
             this.ScenarioCleanup();
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get 2")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Test")]
-        public virtual void Get2()
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Should switch between instances")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Multi-Instance Application")]
+        public virtual void ShouldSwitchBetweenInstances()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get 2", ((string[])(null)));
-#line 15
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Should switch between instances", ((string[])(null)));
+#line 8
 this.ScenarioSetup(scenarioInfo);
-#line 16
- testRunner.Given("I switch to 2", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "k",
+                        "v"});
+            table2.AddRow(new string[] {
+                        "a",
+                        "100"});
+            table2.AddRow(new string[] {
+                        "b",
+                        "200"});
+#line 9
+ testRunner.Given("I add to context", ((string)(null)), table2, "Given ");
+#line 13
+ testRunner.Given("I switch to 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
+                        "k",
+                        "v"});
+            table3.AddRow(new string[] {
+                        "a",
+                        "10"});
+            table3.AddRow(new string[] {
+                        "b",
+                        "20"});
+#line 14
+ testRunner.Given("I add to context", ((string)(null)), table3, "Given ");
+#line hidden
+            this.ScenarioCleanup();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Resolver should access to instance context")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Multi-Instance Application")]
+        public virtual void ResolverShouldAccessToInstanceContext()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Resolver should access to instance context", ((string[])(null)));
+#line 19
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
+                        "k",
+                        "v"});
+            table4.AddRow(new string[] {
+                        "a",
+                        "10"});
+#line 20
+ testRunner.Given("I add to context", ((string)(null)), table4, "Given ");
+#line 23
+ testRunner.Given("I copy from a to b", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line 24
+ testRunner.Given("I switch to 1", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+            TechTalk.SpecFlow.Table table5 = new TechTalk.SpecFlow.Table(new string[] {
+                        "k",
+                        "v"});
+            table5.AddRow(new string[] {
+                        "a",
+                        "10"});
+#line 25
+ testRunner.Given("I add to context", ((string)(null)), table5, "Given ");
+#line 28
+ testRunner.Given("I copy from a to b", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
             this.ScenarioCleanup();
         }

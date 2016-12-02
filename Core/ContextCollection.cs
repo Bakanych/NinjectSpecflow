@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Core
 {
-    public class EntityCollection
+    public class ContextCollection<T>
     {
-        readonly ConcurrentDictionary<int, int> collection = new ConcurrentDictionary<int, int>();
-        public ConcurrentDictionary<int, int> Collection { get { return collection; } }
-        public int this[int key]
+        readonly ConcurrentDictionary<string, T> collection = new ConcurrentDictionary<string, T>();
+        public IDictionary<string, T> Collection { get { return collection; } }
+        public T this[string key]
         {
             get { return collection[key]; }
             set { collection[key] = value; }

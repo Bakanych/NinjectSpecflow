@@ -24,10 +24,16 @@ namespace Tests
         {
             foreach (var row in table.Rows)
             {
-                var instance = provider.Get(context.Current);
-                instance.Context[int.Parse(row[0])] = int.Parse(row[1]);
+                var instance = provider.Create(context.Current);
+                instance.Context[row[0]] = int.Parse(row[1]);
             }
         }
 
+        [Given(@"I copy from (\w+) to (\w+)")]
+        public void Copy(string from, string to)
+        {
+            var instance = provider.Create(context.Current);
+            instance.Context[to] = instance.Resolver.ReadContext(from);
+        }
     }
 }

@@ -1,16 +1,28 @@
-﻿Feature: Test
+﻿Feature: Multi-Instance Application 
 
-@mytag
-Scenario: Get Instances
+Scenario:  Should initialize default instance
+	Given I add to context
+		| k | v  |
+		| a | 10 |
+
+Scenario: Should switch between instances
 	Given I add to context
 		| k | v   |
-		| 1 | 100 |
-		| 2 | 200 |
+		| a | 100 |
+		| b | 200 |
 	Given I switch to 1
 	Given I add to context
 		| k | v  |
-		| 1 | 10 |
-		| 2 | 20 |
+		| a | 10 |
+		| b | 20 |
 
-Scenario: Get 2
-	Given I switch to 2
+Scenario: Resolver should access to instance context 
+	Given I add to context
+		| k | v  |
+		| a | 10 |
+	Given I copy from a to b
+	Given I switch to 1
+	Given I add to context
+		| k | v  |
+		| a | 10 |
+	Given I copy from a to b
